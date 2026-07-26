@@ -104,7 +104,7 @@ function groupByDay(entries) {
     const key = date.toDateString();
     if (!days[key]) {
       days[key] = {
-        name: date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }),
+        name: date.toLocaleDateString('en-US', { weekday: 'long' }),
         entries: [],
       };
     }
