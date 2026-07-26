@@ -33,7 +33,7 @@ searchForm.addEventListener('submit', (e) => {
 });
 
 async function fetchCurrentWeather(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=imperial`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
   const res = await fetch(url);
   if (!res.ok) {
     if (res.status === 404) throw new Error('City not found. Please check the spelling.');
@@ -44,7 +44,7 @@ async function fetchCurrentWeather(city) {
 }
 
 async function fetchForecast(lat, lon) {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=imperial`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
   const res = await fetch(url);
   if (!res.ok) {
     if (res.status === 404) throw new Error('City not found for forecast.');
@@ -61,7 +61,7 @@ function renderCurrentWeather(data) {
     `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
   document.getElementById('weather-icon').alt = data.weather[0].description;
   document.getElementById('humidity').textContent = `${data.main.humidity}%`;
-  document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°F`;
+  document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
   document.getElementById('wind').textContent = `${Math.round(data.wind.speed)} mph`;
 
   currentWeatherEl.classList.remove('hidden');
